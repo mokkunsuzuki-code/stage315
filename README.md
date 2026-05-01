@@ -1,94 +1,106 @@
-Stage314 REMEDA Public Verification
+🚀 REMEDA Stage315 — Trust Score API with Sigstore Verification
 
-Stage314 introduces the **public verification layer** of REMEDA.
+## What is this?
 
-The signed decision is no longer private.
+REMEDA Stage315 provides **verifiable trust decisions as an API**.
 
-It is now:
+It evaluates a target system and returns:
 
-- Publicly visible
-- Independently verifiable
-- Cryptographically accountable
+- ✅ accept
+- ⚠️ pending
+- ❌ reject
 
----
-
-## Core Concept
-
-Stage313 created responsibility.
-
-Stage314 exposes that responsibility to the world.
-
-Anyone can:
-
-- See the decision
-- Verify the signature
-- Reproduce the result
+With a **Trust Score (0.0 - 1.0)** and **cryptographic verification**.
 
 ---
 
-## Public Verification URL
+## 🔥 Why it matters
 
-https://mokkunsuzuki-code.github.io/stage314/
+Modern systems lack **verifiable trust**.
 
-This page provides:
+- Is this system authentic?
+- Was it tampered with?
+- Can we trust this output?
 
-- Final decision
-- Signed proof
-- Verification method
+👉 REMEDA answers these questions programmatically.
 
 ---
 
-## Decision
+## 🧠 Core Features
 
-```json
+- Trust Score calculation
+- Decision engine (accept / pending / reject)
+- Sigstore verification (cosign)
+- API-key based access
+- JSON-based verification model
+
+---
+
+## 🔐 Proof Layer
+
+This system uses:
+
+- Sigstore (cosign)
+- Cryptographic signatures
+- Verifiable decision outputs
+
+👉 Not just "trust me" — **prove it**
+
+---
+
+## ⚙️ API Example
+
+```bash
+curl -X POST http://127.0.0.1:3120/api/verify \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: test-key-123" \
+  -d '{
+    "url": "https://example.com",
+    "manifest": {
+      "integrity": true,
+      "execution": true,
+      "identity": true,
+      "timestamp": true,
+      "workflow": "github-actions"
+    }
+  }'
+Response
 {
   "decision": "accept",
-  "signed_by": "Motohiro Suzuki",
-  "statement": "I approve this verification result as accept.",
-  "stage": 313
+  "score": 1.0,
+  "sigstore_verified": true,
+  "breakdown": {
+    "integrity": 1.0,
+    "execution": 1.0,
+    "identity": 1.0,
+    "time": 1.0,
+    "sigstore": 1.0
+  }
 }
-Verification
+💰 Pricing (Planned)
+Free
+100 requests/day
+Limited verification
+Pro
+Full verification
+Sigstore included
+History access
+Enterprise
+Custom policies
+Dedicated environment
+QSP integration
+🚀 Vision
 
-Anyone can verify:
+👉 Trust becomes programmable
 
-gpg --verify decision.json.sig decision.json
+REMEDA aims to become:
 
-Expected result:
+"Stripe for Trust"
 
-Good signature from "Motohiro Suzuki"
-Trust Model
+📦 Repository
 
-This system guarantees:
+https://github.com/mokkunsuzuki-code/stage315
 
-Integrity (data is unchanged)
-Identity (signed by a real person)
-Accountability (explicit approval)
-Reproducibility (third-party verification)
-Why This Matters
+🛡 License
 
-Traditional systems:
-
-Output results
-
-REMEDA Stage314:
-
-Proves results
-Assigns responsibility
-Enables public trust
-Position in Architecture
-
-Stage312 → Sellable API
-Stage313 → Signed responsibility
-Stage314 → Public verification ← current stage
-
-Monetization Path
-Verification API (Stage312)
-Trust scoring
-Enterprise verification pipelines
-License
-
-MIT License (2025)
-
-Author
-
-Motohiro Suzuki
+MIT License
